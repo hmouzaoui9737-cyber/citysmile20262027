@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Smile Dental Centre - Hammadi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#00a8b5',
+                            600: '#008b98',
+                            700: '#006c77',
+                            900: '#053c43',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-900 text-white text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-xs sm:text-sm">
+                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-500"></i> <span data-i18n="topBarHours">Ouvert 24h/24 et 7j/7</span></span>
+                <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-4 h-4 text-brand-500"></i> <span data-i18n="topBarLoc">Hammadi Centre (en face du marché)</span></span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:0561451087" class="flex items-center gap-1.5 hover:text-brand-100 font-medium transition">
+                    <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+                    <span>0561 45 10 87</span>
+                </a>
+                <button onclick="toggleLanguage()" class="bg-brand-700 hover:bg-brand-600 px-3 py-0.5 rounded text-xs font-semibold uppercase tracking-wider transition flex items-center gap-1">
+                    <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                    <span id="langBtnText">العربية</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-105 transition duration-300">
+                    <svg viewBox="0 0 300 300" class="w-full h-full text-brand-500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="205" cy="75" r="14" fill="#00a8b5" />
+                        <path d="M70 120 C 70 80, 100 65, 125 90 C 135 100, 145 100, 155 90 C 180 65, 210 80, 210 120 C 210 160, 185 200, 160 220 C 145 232, 135 232, 120 220 C 95 200, 70 160, 70 120 Z" stroke="#00a8b5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M100 115 C 115 100, 130 110, 140 125" stroke="#00a8b5" stroke-width="8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-xl font-bold tracking-tight text-slate-900 leading-none">City Smile</span>
+                    <span class="block text-xs font-semibold text-brand-600 tracking-wider uppercase mt-1">Dental Centre</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="text-slate-600 hover:text-brand-600 transition" data-i18n="navAbout">À propos</a>
+                <a href="#services" class="text-slate-600 hover:text-brand-600 transition" data-i18n="navServices">Soins & Services</a>
+                <a href="#gallery" class="text-slate-600 hover:text-brand-600 transition" data-i18n="navGallery">Notre Cabinet</a>
+                <a href="#faq" class="text-slate-600 hover:text-brand-600 transition" data-i18n="navFAQ">FAQ</a>
+                <a href="#contact" class="text-slate-600 hover:text-brand-600 transition" data-i18n="navContact">Contact</a>
+            </nav>
+
+            <!-- Quick Action Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="openAppointmentsModal()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium text-sm transition flex items-center gap-2">
+                    <i data-lucide="calendar-check" class="w-4 h-4 text-brand-600"></i>
+                    <span data-i18n="btnMyRDV">Mes RDV</span>
+                </button>
+                <a href="#booking" class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm shadow-md shadow-brand-500/20 transition flex items-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span data-i18n="btnBook">Prendre RDV</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Trigger -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 py-6 space-y-4">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium" data-i18n="navAbout">À propos</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium" data-i18n="navServices">Soins & Services</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium" data-i18n="navGallery">Notre Cabinet</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium" data-i18n="navFAQ">FAQ</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-700 font-medium" data-i18n="navContact">Contact</a>
+            <div class="pt-4 border-t border-slate-100 flex flex-col gap-2">
+                <button onclick="toggleMobileMenu(); openAppointmentsModal()" class="w-full py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-sm text-center flex justify-center items-center gap-2">
+                    <i data-lucide="calendar-check" class="w-4 h-4 text-brand-600"></i>
+                    <span data-i18n="btnMyRDV">Mes RDV</span>
+                </button>
+                <a href="#booking" onclick="toggleMobileMenu()" class="w-full py-2.5 rounded-xl bg-brand-500 text-white font-medium text-sm text-center block" data-i18n="btnBook">Prendre RDV</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 bg-gradient-to-b from-brand-50/60 to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left rtl:lg:text-right">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/80 text-brand-700 text-xs font-semibold uppercase tracking-wider">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                        <span data-i18n="heroBadge">Centre Dentaire Moderne à Hammadi</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight" data-i18n="heroTitle">
+                        Votre sourire, <span class="text-brand-500">notre priorité</span>.
+                    </h1>
+
+                    <p class="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="heroSubtitle">
+                        Le Cabinet Dentaire City Smile vous accueille 24h/24 et 7j/7 avec un équipement de haute technologie pour tous vos soins bucco-dentaires, urgences et esthétique dentaire.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#booking" class="px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-base shadow-lg shadow-brand-500/25 transition flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5"></i>
+                            <span data-i18n="btnBookNow">Réserver un rendez-vous</span>
+                        </a>
+                        <a href="tel:0561451087" class="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-semibold text-base border border-slate-200 shadow-sm transition flex items-center gap-2">
+                            <i data-lucide="phone-call" class="w-5 h-5 text-emerald-500"></i>
+                            <span>0561 45 10 87</span>
+                        </a>
+                    </div>
+
+                    <!-- Key highlights -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-200/80">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-bold text-brand-600">24/7</span>
+                            <span class="text-xs sm:text-sm text-slate-500" data-i18n="stat24">Urgences & Soins</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-bold text-brand-600">100%</span>
+                            <span class="text-xs sm:text-sm text-slate-500" data-i18n="statSteril">Stérilisation stricte</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-bold text-brand-600">High-Tech</span>
+                            <span class="text-xs sm:text-sm text-slate-500" data-i18n="statTech">Équipement moderne</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group">
+                        <img src="IMG_4730.jpeg" alt="Cabinet Dentaire" class="w-full h-[450px] object-cover group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/90 text-white text-xs font-semibold mb-2">
+                                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                                <span data-i18n="openStatus">Cabinet Ouvert</span>
+                            </div>
+                            <h3 class="text-xl font-bold">City Smile Dental Centre</h3>
+                            <p class="text-sm text-slate-200" data-i18n="heroAddress">Hammadi Centre (en face du marché), Boumerdès</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900" data-i18n="servicesTitle">Nos Prestations & Soins</h2>
+                <p class="text-slate-600 mt-3 text-lg" data-i18n="servicesSubtitle">Des soins dentaires complets réalisés avec une précision maximale et sans douleur.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                            <i data-lucide="stethoscope" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="srv1Title">Consultation & Diagnostic</h3>
+                        <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="srv1Desc">Examen clinique bucco-dentaire complet, bilan personnalisé et conseils d'hygiène.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex justify-between items-center text-xs font-medium text-slate-500">
+                        <span data-i18n="srv1Time">30 min</span>
+                        <a href="#booking" class="text-brand-600 hover:underline font-semibold" data-i18n="btnBookSrv">Réserver →</a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="srv2Title">Détartrage & Polissage</h3>
+                        <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="srv2Desc">Nettoyage ultrasonique en profondeur pour éliminer la plaque et restituer l'éclat des dents.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex justify-between items-center text-xs font-medium text-slate-500">
+                        <span data-i18n="srv2Time">45 min</span>
+                        <a href="#booking" class="text-brand-600 hover:underline font-semibold" data-i18n="btnBookSrv">Réserver →</a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                            <i data-lucide="shield" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="srv3Title">Soins Conservateurs</h3>
+                        <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="srv3Desc">Traitement des caries, obturations esthétiques (composite) et dévitalisation si nécessaire.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex justify-between items-center text-xs font-medium text-slate-500">
+                        <span data-i18n="srv3Time">45-60 min</span>
+                        <a href="#booking" class="text-brand-600 hover:underline font-semibold" data-i18n="btnBookSrv">Réserver →</a>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                            <i data-lucide="crown" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="srv4Title">Prothèses Dentaires</h3>
+                        <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="srv4Desc">Couronnes, bridges en céramique/zircone et prothèses amovibles fixes et esthétiques.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex justify-between items-center text-xs font-medium text-slate-500">
+                        <span data-i18n="srv4Time">Sur mesure</span>
+                        <a href="#booking" class="text-brand-600 hover:underline font-semibold" data-i18n="btnBookSrv">Réserver →</a>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-6">
+                            <i data-lucide="smile" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="srv5Title">Blanchiment Dentaire</h3>
+                        <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="srv5Desc">Éclaircissement dentaire professionnel au fauteuil pour un sourire éclatant.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-200/60 flex justify-between items-center text-xs font-medium text-slate-500">
+                        <span data-i18n="srv5Time">60 min</span>
+                        <a href="#booking" class="text-brand-600 hover:underline font-semibold" data-i18n="btnBookSrv">Réserver →</a>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="p-8 rounded-2xl bg-red-50 border border-red-100 hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center mb-6">
+                            <i data-lucide="siren" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900" data-i18n="srv6Title">Urgences 24h/24</h3>
+                        <p class="text-slate-600 text-sm mt-3 leading-relaxed" data-i18n="srv6Desc">Prise en charge immédiate des douleurs aiguës, abcès, traumatismes ou rage de dent.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-red-200/60 flex justify-between items-center text-xs font-medium text-slate-500">
+                        <span class="text-red-600 font-bold" data-i18n="srv6Time">Immédiat 24/7</span>
+                        <a href="tel:0561451087" class="text-red-600 hover:underline font-bold" data-i18n="btnCallNow">Appeler 0561 45 10 87</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinic Photo Gallery -->
+    <section id="gallery" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-500 text-sm font-semibold uppercase tracking-wider" data-i18n="galBadge">Locaux & Équipements</span>
+                <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="galTitle">Découvrez Notre Cabinet</h2>
+                <p class="text-slate-400 mt-3 text-lg" data-i18n="galSubtitle">Un cadre chaleureux, moderne et parfaitement équipé pour votre confort.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/50 cursor-pointer shadow-lg" onclick="openLightbox(0)">
+                    <img id="img1" src="IMG_7265.jpg" alt="Accueil Cabinet City Smile" class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs text-brand-400 font-semibold uppercase tracking-wider" data-i18n="gal1Tag">Espace d'accueil</span>
+                        <h4 class="text-lg font-bold text-white mt-1" data-i18n="gal1Title">Réception & Salle d'attente</h4>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/50 cursor-pointer shadow-lg" onclick="openLightbox(1)">
+                    <img id="img2" src="IMG_5580.jpg" alt="Salle de soin City Smile" class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs text-brand-400 font-semibold uppercase tracking-wider" data-i18n="gal2Tag">Plateau Technique</span>
+                        <h4 class="text-lg font-bold text-white mt-1" data-i18n="gal2Title">Salle de Soin Moderne</h4>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="group relative rounded-2xl overflow-hidden bg-slate-800 border border-slate-700/50 cursor-pointer shadow-lg" onclick="openLightbox(2)">
+                    <img id="img3" src="IMG_4730.jpeg" alt="Affiche City Smile" class="w-full h-80 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs text-brand-400 font-semibold uppercase tracking-wider" data-i18n="gal3Tag">Présentation</span>
+                        <h4 class="text-lg font-bold text-white mt-1" data-i18n="gal3Title">City Smile Center</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-brand-400 p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightboxImg" src="" class="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl">
+    </div>
+
+    <!-- Booking Form Wizard Section -->
+    <section id="booking" class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
+                
+                <div class="bg-brand-900 text-white p-8 sm:p-10 text-center">
+                    <span class="text-brand-500 text-xs font-semibold uppercase tracking-widest block mb-2" data-i18n="bookBadge">Réservation Directe</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold" data-i18n="bookTitle">Prendre Rendez-vous en Ligne</h2>
+                    <p class="text-slate-300 text-sm mt-2" data-i18n="bookSubtitle">Choisissez votre soin, la date et l'heure en quelques clics.</p>
+                </div>
+
+                <div class="p-6 sm:p-10">
+                    <!-- Wizard Steps Bar -->
+                    <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-100 text-xs sm:text-sm font-semibold text-slate-400">
+                        <div id="stepHeader1" class="flex items-center gap-2 text-brand-600">
+                            <span class="w-7 h-7 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold">1</span>
+                            <span data-i18n="step1">Soin</span>
+                        </div>
+                        <div class="w-8 h-0.5 bg-slate-200"></div>
+                        <div id="stepHeader2" class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center font-bold">2</span>
+                            <span data-i18n="step2">Date & Heure</span>
+                        </div>
+                        <div class="w-8 h-0.5 bg-slate-200"></div>
+                        <div id="stepHeader3" class="flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center font-bold">3</span>
+                            <span data-i18n="step3">Coordonnées</span>
+                        </div>
+                    </div>
+
+                    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                        
+                        <!-- Step 1: Select Service -->
+                        <div id="step1" class="space-y-4">
+                            <label class="block text-sm font-semibold text-slate-800 mb-2" data-i18n="lblSelectSrv">Sélectionnez le type de soin :</label>
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <label class="border border-slate-200 rounded-xl p-4 flex items-start gap-3 cursor-pointer hover:border-brand-500 transition">
+                                    <input type="radio" name="service" value="Consultation & Diagnostic" class="mt-1 text-brand-600 focus:ring-brand-500" checked>
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800" data-i18n="srv1Title">Consultation & Diagnostic</span>
+                                        <span class="block text-xs text-slate-500 mt-1" data-i18n="srv1Desc">Examen clinique complet</span>
+                                    </div>
+                                </label>
+                                <label class="border border-slate-200 rounded-xl p-4 flex items-start gap-3 cursor-pointer hover:border-brand-500 transition">
+                                    <input type="radio" name="service" value="Détartrage & Polissage" class="mt-1 text-brand-600 focus:ring-brand-500">
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800" data-i18n="srv2Title">Détartrage & Polissage</span>
+                                        <span class="block text-xs text-slate-500 mt-1" data-i18n="srv2Desc">Nettoyage ultrasonique</span>
+                                    </div>
+                                </label>
+                                <label class="border border-slate-200 rounded-xl p-4 flex items-start gap-3 cursor-pointer hover:border-brand-500 transition">
+                                    <input type="radio" name="service" value="Soins Conservateurs" class="mt-1 text-brand-600 focus:ring-brand-500">
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800" data-i18n="srv3Title">Soins Conservateurs</span>
+                                        <span class="block text-xs text-slate-500 mt-1" data-i18n="srv3Desc">Traitement des caries</span>
+                                    </div>
+                                </label>
+                                <label class="border border-slate-200 rounded-xl p-4 flex items-start gap-3 cursor-pointer hover:border-brand-500 transition">
+                                    <input type="radio" name="service" value="Prothèses Dentaires" class="mt-1 text-brand-600 focus:ring-brand-500">
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800" data-i18n="srv4Title">Prothèses Dentaires</span>
+                                        <span class="block text-xs text-slate-500 mt-1" data-i18n="srv4Desc">Couronnes et prothèses</span>
+                                    </div>
+                                </label>
+                                <label class="border border-slate-200 rounded-xl p-4 flex items-start gap-3 cursor-pointer hover:border-brand-500 transition">
+                                    <input type="radio" name="service" value="Blanchiment Dentaire" class="mt-1 text-brand-600 focus:ring-brand-500">
+                                    <div>
+                                        <span class="block text-sm font-bold text-slate-800" data-i18n="srv5Title">Blanchiment Dentaire</span>
+                                        <span class="block text-xs text-slate-500 mt-1" data-i18n="srv5Desc">Éclaircissement esthétique</span>
+                                    </div>
+                                </label>
+                                <label class="border border-red-200 bg-red-50/50 rounded-xl p-4 flex items-start gap-3 cursor-pointer hover:border-red-500 transition">
+                                    <input type="radio" name="service" value="Urgence Dentaire" class="mt-1 text-red-600 focus:ring-red-500">
+                                    <div>
+                                        <span class="block text-sm font-bold text-red-800" data-i18n="srv6Title">Urgence Dentaire</span>
+                                        <span class="block text-xs text-red-600 mt-1" data-i18n="srv6Desc">Prise en charge rapide 24/7</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="pt-6 flex justify-end">
+                                <button type="button" onclick="goToStep(2)" class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm transition" data-i18n="btnNext">Suivant →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Date & Time -->
+                        <div id="step2" class="hidden space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-800 mb-2" data-i18n="lblDate">Choisir la date :</label>
+                                <input type="date" id="bookingDate" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none text-slate-800">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-800 mb-2" data-i18n="lblTime">Choisir l'horaire disponible (Ouvert 24/24) :</label>
+                                <div class="grid grid-cols-3 sm:grid-cols-4 gap-2.5" id="timeSlots">
+                                    <!-- Time slots generated via JavaScript -->
+                                </div>
+                            </div>
+                            <div class="pt-6 flex justify-between">
+                                <button type="button" onclick="goToStep(1)" class="px-6 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-sm transition" data-i18n="btnBack">← Retour</button>
+                                <button type="button" onclick="goToStep(3)" class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-medium text-sm transition" data-i18n="btnNext">Suivant →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Patient Info -->
+                        <div id="step3" class="hidden space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-800 mb-1" data-i18n="lblFullName">Nom & Prénom :</label>
+                                    <input type="text" id="patientName" required placeholder="Ex: Mohamed Amine" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-slate-800 mb-1" data-i18n="lblPhone">Numéro de téléphone :</label>
+                                    <input type="tel" id="patientPhone" required placeholder="05/06/07 XX XX XX" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-800 mb-1" data-i18n="lblNotes">Notes ou symptômes particuliers (Optionnel) :</label>
+                                <textarea id="patientNotes" rows="3" placeholder="..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
+                            </div>
+
+                            <div class="pt-6 flex justify-between">
+                                <button type="button" onclick="goToStep(2)" class="px-6 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-sm transition" data-i18n="btnBack">← Retour</button>
+                                <button type="submit" class="px-8 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm shadow-lg shadow-brand-500/20 transition flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                    <span data-i18n="btnConfirmRDV">Confirmer le rendez-vous</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900" data-i18n="faqTitle">Questions Fréquentes</h2>
+                <p class="text-slate-600 mt-2" data-i18n="faqSubtitle">Tout ce que vous devez savoir avant votre visite.</p>
+            </div>
+
+            <div class="space-y-4">
+                <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base">
+                        <span data-i18n="faq1Q">Où se situe exactement le cabinet City Smile ?</span>
+                        <span class="transition group-open:-rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed" data-i18n="faq1A">
+                        Le cabinet se situe à Hammadi Centre, juste en face du marché principal, Wilaya de Boumerdès. L'accès est facile avec possibilité de stationnement à proximité.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base">
+                        <span data-i18n="faq2Q">Quels sont les horaires d'ouverture ?</span>
+                        <span class="transition group-open:-rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed" data-i18n="faq2A">
+                        Notre cabinet meut assurer un service continu 24h/24 et 7j/7, aussi bien pour la prise de rendez-vous habituelle que pour les urgences dentaires nocturnes et du week-end.
+                    </p>
+                </details>
+
+                <details class="group bg-slate-50 p-6 rounded-2xl border border-slate-200/80 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 text-base">
+                        <span data-i18n="faq3Q">Comment se passe la prise en charge des urgences ?</span>
+                        <span class="transition group-open:-rotate-180"><i data-lucide="chevron-down" class="w-5 h-5 text-slate-500"></i></span>
+                    </summary>
+                    <p class="mt-4 text-sm text-slate-600 leading-relaxed" data-i18n="faq3A">
+                        En cas de douleur intense ou d'urgence, vous pouvez vous présenter directement au cabinet ou nous appeler directement au 0561 45 10 87 pour un traitement immédiat.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section id="contact" class="py-20 bg-slate-50 border-t border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-brand-600 text-xs font-semibold uppercase tracking-wider" data-i18n="contactBadge">Nous contacter</span>
+                        <h2 class="text-3xl font-bold text-slate-900 mt-1" data-i18n="contactTitle">Visitez Notre Cabinet</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900" data-i18n="lblAddress">Adresse</h4>
+                                <p class="text-xs text-slate-600 mt-1" data-i18n="valAddress">Hammadi Centre (en face du marché), Boumerdès</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900" data-i18n="lblPhoneContact">Téléphone Direct</h4>
+                                <a href="tel:0561451087" class="text-xs font-semibold text-brand-600 hover:underline mt-1 block">0561 45 10 87</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200/80">
+                            <div class="w-10 h-10 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900" data-i18n="lblHoursContact">Horaires d'ouverture</h4>
+                                <p class="text-xs text-slate-600 mt-1" data-i18n="valHoursContact">Ouvert 24h/24 & 7j/7 sans interruption</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map View -->
+                <div class="lg:col-span-7 h-[400px] rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3198.818128362677!2d3.2842!3d36.6805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQwJzE5LjgnTiAzwrAxNycwMy4xIkU!5e0!3m2!1sfr!2sdz!4v1690000000000!5m2!1sfr!2sdz" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-500/20 flex items-center justify-center p-1">
+                    <svg viewBox="0 0 300 300" class="w-full h-full text-brand-500" fill="none">
+                        <path d="M70 120 C 70 80, 100 65, 125 90 C 135 100, 145 100, 155 90 C 180 65, 210 80, 210 120 C 210 160, 185 200, 160 220 C 145 232, 135 232, 120 220 C 95 200, 70 160, 70 120 Z" stroke="currentColor" stroke-width="20"/>
+                    </svg>
+                </div>
+                <span class="text-white font-bold text-base">City Smile Dental Centre</span>
+            </div>
+            <p class="text-xs text-slate-500">© 2026 City Smile Hammadi. <span data-i18n="footerRights">Tous droits réservés.</span></p>
+        </div>
+    </footer>
+
+    <!-- Patient Appointments Modal -->
+    <div id="rdvModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeAppointmentsModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <h3 class="text-xl font-bold text-slate-900 mb-4" data-i18n="modalTitleRDV">Mes Rendez-vous Réservés</h3>
+            <div id="appointmentsList" class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+                <!-- Populated via Javascript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Print / Success Receipt Modal -->
+    <div id="receiptModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl text-center relative" id="receiptContent">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900" data-i18n="recTitle">Rendez-vous Confirmé !</h3>
+            <p class="text-xs text-slate-500 mt-1" data-i18n="recSubtitle">Veuillez conserver ce récépissé de confirmation.</p>
+
+            <div class="my-6 p-4 rounded-2xl bg-slate-50 text-left rtl:text-right border border-slate-200 text-sm space-y-2">
+                <div class="flex justify-between border-b pb-2"><span class="text-slate-500" data-i18n="recCode">Réf :</span> <span id="recCodeVal" class="font-bold text-brand-600"></span></div>
+                <div class="flex justify-between border-b pb-2"><span class="text-slate-500" data-i18n="recName">Nom :</span> <span id="recNameVal" class="font-semibold text-slate-800"></span></div>
+                <div class="flex justify-between border-b pb-2"><span class="text-slate-500" data-i18n="recSrv">Soin :</span> <span id="recSrvVal" class="font-semibold text-slate-800"></span></div>
+                <div class="flex justify-between border-b pb-2"><span class="text-slate-500" data-i18n="recDate">Date & Heure :</span> <span id="recDateVal" class="font-semibold text-slate-800"></span></div>
+                <div class="flex justify-between"><span class="text-slate-500" data-i18n="recLoc">Lieu :</span> <span class="font-semibold text-slate-800">Hammadi Centre</span></div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="window.print()" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium text-sm hover:bg-slate-50 transition" data-i18n="btnPrint">Imprimer</button>
+                <button onclick="closeReceiptModal()" class="flex-1 py-2.5 rounded-xl bg-brand-500 text-white font-medium text-sm hover:bg-brand-600 transition" data-i18n="btnClose">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const clinicImages = [
+            'IMG_7265.jpg',
+            'IMG_5580.jpg',
+            'IMG_4730.jpeg'
+        ];
+
+        const translations = {
+            fr: {
+                topBarHours: "Ouvert 24h/24 et 7j/7",
+                topBarLoc: "Hammadi Centre (en face du marché)",
+                navAbout: "À propos",
+                navServices: "Soins & Services",
+                navGallery: "Notre Cabinet",
+                navFAQ: "FAQ",
+                navContact: "Contact",
+                btnMyRDV: "Mes RDV",
+                btnBook: "Prendre RDV",
+                heroBadge: "Centre Dentaire Moderne à Hammadi",
+                heroTitle: "Votre sourire, notre priorité.",
+                heroSubtitle: "Le Cabinet Dentaire City Smile vous accueille 24h/24 et 7j/7 avec un équipement de haute technologie pour tous vos soins bucco-dentaires, urgences et esthétique dentaire.",
+                btnBookNow: "Réserver un rendez-vous",
+                stat24: "Urgences & Soins",
+                statSteril: "Stérilisation stricte",
+                statTech: "Équipement moderne",
+                openStatus: "Cabinet Ouvert",
+                heroAddress: "Hammadi Centre (en face du marché), Boumerdès",
+                servicesTitle: "Nos Prestations & Soins",
+                servicesSubtitle: "Des soins dentaires complets réalisés avec une précision maximale et sans douleur.",
+                srv1Title: "Consultation & Diagnostic",
+                srv1Desc: "Examen clinique bucco-dentaire complet, bilan personnalisé et conseils d'hygiène.",
+                srv1Time: "30 min",
+                srv2Title: "Détartrage & Polissage",
+                srv2Desc: "Nettoyage ultrasonique en profondeur pour éliminer la plaque et restituer l'éclat des dents.",
+                srv2Time: "45 min",
+                srv3Title: "Soins Conservateurs",
+                srv3Desc: "Traitement des caries, obturations esthétiques (composite) et dévitalisation si nécessaire.",
+                srv3Time: "45-60 min",
+                srv4Title: "Prothèses Dentaires",
+                srv4Desc: "Couronnes, bridges en céramique/zircone et prothèses amovibles fixes et esthétiques.",
+                srv4Time: "Sur mesure",
+                srv5Title: "Blanchiment Dentaire",
+                srv5Desc: "Éclaircissement dentaire professionnel au fauteuil pour un sourire éclatant.",
+                srv5Time: "60 min",
+                srv6Title: "Urgences 24h/24",
+                srv6Desc: "Prise en charge immédiate des douleurs aiguës, abcès, traumatismes ou rage de dent.",
+                srv6Time: "Immédiat 24/7",
+                btnBookSrv: "Réserver →",
+                btnCallNow: "Appeler 0561 45 10 87",
+                galBadge: "Locaux & Équipements",
+                galTitle: "Découvrez Notre Cabinet",
+                galSubtitle: "Un cadre chaleureux, moderne et parfaitement équipé pour votre confort.",
+                gal1Tag: "Espace d'accueil",
+                gal1Title: "Réception & Salle d'attente",
+                gal2Tag: "Plateau Technique",
+                gal2Title: "Salle de Soin Moderne",
+                gal3Tag: "Présentation",
+                gal3Title: "City Smile Center",
+                bookBadge: "Réservation Directe",
+                bookTitle: "Prendre Rendez-vous en Ligne",
+                bookSubtitle: "Choisissez votre soin, la date et l'heure en quelques clics.",
+                step1: "Soin",
+                step2: "Date & Heure",
+                step3: "Coordonnées",
+                lblSelectSrv: "Sélectionnez le type de soin :",
+                btnNext: "Suivant →",
+                btnBack: "← Retour",
+                lblDate: "Choisir la date :",
+                lblTime: "Choisir l'horaire disponible (Ouvert 24/24) :",
+                lblFullName: "Nom & Prénom :",
+                lblPhone: "Numéro de téléphone :",
+                lblNotes: "Notes ou symptômes particuliers (Optionnel) :",
+                btnConfirmRDV: "Confirmer le rendez-vous",
+                faqTitle: "Questions Fréquentes",
+                faqSubtitle: "Tout ce que vous devez savoir avant votre visite.",
+                faq1Q: "Où se situe exactement le cabinet City Smile ?",
+                faq1A: "Le cabinet se situe à Hammadi Centre, juste en face du marché principal, Wilaya de Boumerdès. L'accès est facile avec possibilité de stationnement à proximité.",
+                faq2Q: "Quels sont les horaires d'ouverture ?",
+                faq2A: "Notre cabinet assure un service continu 24h/24 et 7j/7, aussi bien pour la prise de rendez-vous habituelle que pour les urgences dentaires nocturnes et du week-end.",
+                faq3Q: "Comment se passe la prise en charge des urgences ?",
+                faq3A: "En cas de douleur intense ou d'urgence, vous pouvez vous présenter directement au cabinet ou nous appeler directement au 0561 45 10 87 pour un traitement immédiat.",
+                contactBadge: "Nous contacter",
+                contactTitle: "Visitez Notre Cabinet",
+                lblAddress: "Adresse",
+                valAddress: "Hammadi Centre (en face du marché), Boumerdès",
+                lblPhoneContact: "Téléphone Direct",
+                lblHoursContact: "Horaires d'ouverture",
+                valHoursContact: "Ouvert 24h/24 & 7j/7 sans interruption",
+                footerRights: "Tous droits réservés.",
+                modalTitleRDV: "Mes Rendez-vous Réservés",
+                recTitle: "Rendez-vous Confirmé !",
+                recSubtitle: "Veuillez conserver ce récépissé de confirmation.",
+                recCode: "Réf :",
+                recName: "Nom :",
+                recSrv: "Soin :",
+                recDate: "Date & Heure :",
+                recLoc: "Lieu :",
+                btnPrint: "Imprimer",
+                btnClose: "Fermer"
+            },
+            ar: {
+                topBarHours: "مفتوح 24/24 و 7/7",
+                topBarLoc: "حمادي المركز (مقابل السوق)",
+                navAbout: "عن العيادة",
+                navServices: "الخدمات والعلاج",
+                navGallery: "عيادتنا",
+                navFAQ: "الأسئلة الشائعة",
+                navContact: "اتصل بنا",
+                btnMyRDV: "مواعيدي",
+                btnBook: "حجز موعد",
+                heroBadge: "مركز طب الأسنان الحديث في حمادي",
+                heroTitle: "ابتسامتكم.. <span class=\"text-brand-500\">أولويتنا</span>.",
+                heroSubtitle: "يرحب بكم مركز سيتي سمايل لطب الأسنان على مدار 24 ساعة طوال أيام الأسبوع بأحدث المعدات لجميع علاجات الأسنان والطوارئ والجراحة التجميلية.",
+                btnBookNow: "حجز موعد الآن",
+                stat24: "طوارئ وعلاجات",
+                statSteril: "تعقيم صارم 100%",
+                statTech: "تجهيزات حديثة",
+                openStatus: "العيادة مفتوحة",
+                heroAddress: "حمادي المركز (مقابل السوق)، ولاية بومرداس",
+                servicesTitle: "خدماتنا وعلاجاتنا",
+                servicesSubtitle: "رعاية كاملة للأسنان بأعلى درجات الدقة وبدون ألم.",
+                srv1Title: "فحص وتأطير طبّي",
+                srv1Desc: "فحص شامل للفم والأسنان مع تقديم تشخيص ودراسة حالة شخصية.",
+                srv1Time: "30 دقيقة",
+                srv2Title: "تنظيف وإزالة الترسبات",
+                srv2Desc: "تنظيف بالموجات فوق الصوتية لإزالة الجير واستعادة بريق الأسنان.",
+                srv2Time: "45 دقيقة",
+                srv3Title: "علاج التسوس والأسنان",
+                srv3Desc: "حشو الأسنان التجميلي (Composite) وعلاج الجذور والأعصاب.",
+                srv3Time: "45-60 دقيقة",
+                srv4Title: "تركيب البدائل والتركيبات",
+                srv4Desc: "تيجان وجسور السيراميك والزيركون والتركيبات الثابتة والمتحركة.",
+                srv4Time: "حسب الحالة",
+                srv5Title: "تبييض الأسنان التجميلي",
+                srv5Desc: "تبييض احترافي بالعيادة للحصول على ابتسامة مشرقة.",
+                srv5Time: "60 دقيقة",
+                srv6Title: "طوارئ الأسنان 24/24",
+                srv6Desc: "تكفل فوري بالحالات المستعجلة وآلام الأسنان الحادة والجراحة.",
+                srv6Time: "فوري 24/7",
+                btnBookSrv: "احجز الآن ←",
+                btnCallNow: "اتصل بـ 0561 45 10 87",
+                galBadge: "المقر والتجهيزات",
+                galTitle: "اكتشف عيادتنا",
+                galSubtitle: "بيئة مريحة وتجهيزات طبية متطورة لضمان راحتكم.",
+                gal1Tag: "قاعة الاستقبال",
+                gal1Title: "الاستقبال وقاعة الانتظار",
+                gal2Tag: "قاعة العلاج",
+                gal2Title: "قاعة العلاج الحديثة",
+                gal3Tag: "عرض العيادة",
+                gal3Title: "مركز سيتي سمايل",
+                bookBadge: "حجز مباشر",
+                bookTitle: "حجز موعد عبر الإنترنت",
+                bookSubtitle: "اختر نوع العلاج والتاريخ والوقت ببضع نقرات.",
+                step1: "العلاج",
+                step2: "التاريخ والوقت",
+                step3: "المعلومات",
+                lblSelectSrv: "اختر نوع العلاج المطلوب:",
+                btnNext: "التالي ←",
+                btnBack: "← رجوع",
+                lblDate: "اختر التاريخ:",
+                lblTime: "اختر التوقيت المتاح (العيادة مفتوحة 24/24):",
+                lblFullName: "الاسم واللقب:",
+                lblPhone: "رقم الهاتف:",
+                lblNotes: "ملاحظات أو أعراض خاصة (اختياري):",
+                btnConfirmRDV: "تأكيد الموعد",
+                faqTitle: "الأسئلة الشائعة",
+                faqSubtitle: "كل ما تحتاج معرفته قبل زيارتك للعيادة.",
+                faq1Q: "أين تقع عيادة سيتي سمايل بالضبط؟",
+                faq1A: "تقع العيادة في حمادي المركز، مباشرة مقابل السوق الرئيسي، ولاية بومرداس. الوصول إليها سهل مع توفر أماكن لركن السيارات.",
+                faq2Q: "ما هي أوقات العمل في العيادة؟",
+                faq2A: "توفر عيادتنا خدمة مستمرة 24 ساعة / 24 يومًا و 7 أيام في الأسبوع للمواعيد العادية وكذلك لحالات الطوارئ الليلية وفي عطلة نهاية الأسبوع.",
+                faq3Q: "كيف يتم التكفل بالحالات المستعجلة؟",
+                faq3A: "في حالة وجود ألم حاد، يمكنك الحضور مباشرة إلى العيادة أو الاتصال بنا فوراً على الرقم 0561 45 10 87 للتكفل الفوري.",
+                contactBadge: "تواصل معنا",
+                contactTitle: "قم بزيارة عيادتنا",
+                lblAddress: "العنوان",
+                valAddress: "حمادي المركز (مقابل السوق)، ولاية بومرداس",
+                lblPhoneContact: "الهاتف المباشر",
+                lblHoursContact: "أوقات العمل",
+                valHoursContact: "مفتوح 24/24 و 7/7 بدون انقطاع",
+                footerRights: "جميع الحقوق محفوظة.",
+                modalTitleRDV: "مواعيدي المحجوزة",
+                recTitle: "تم تأكيد الموعد بنجاح!",
+                recSubtitle: "يرجى الاحتفاظ بوصل التأكيد هذا.",
+                recCode: "الرمز :",
+                recName: "الاسم :",
+                recSrv: "العلاج :",
+                recDate: "التاريخ والوقت :",
+                recLoc: "المكان :",
+                btnPrint: "طباعة",
+                btnClose: "إغلاق"
+            }
+        };
+
+        let currentLang = localStorage.getItem('cs_lang') || 'fr';
+
+        function updateLanguage() {
+            const langData = translations[currentLang];
+            const html = document.documentElement;
+
+            html.lang = currentLang;
+            html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langBtnText').textContent = currentLang === 'ar' ? 'Français' : 'العربية';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (langData[key]) {
+                    el.innerHTML = langData[key];
+                }
+            });
+
+            generateTimeSlots();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'ar' : 'fr';
+            localStorage.setItem('cs_lang', currentLang);
+            updateLanguage();
+        }
+
+        function openLightbox(index) {
+            document.getElementById('lightboxImg').src = clinicImages[index];
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.getElementById('lightbox').classList.add('flex');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.getElementById('lightbox').classList.remove('flex');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        let currentStep = 1;
+        function goToStep(step) {
+            document.getElementById(`step${currentStep}`).classList.add('hidden');
+            document.getElementById(`step${step}`).classList.remove('hidden');
+
+            const hCurrent = document.getElementById(`stepHeader${currentStep}`);
+            const hNext = document.getElementById(`stepHeader${step}`);
+
+            hCurrent.classList.remove('text-brand-600');
+            hNext.classList.add('text-brand-600');
+
+            currentStep = step;
+        }
+
+        function generateTimeSlots() {
+            const container = document.getElementById('timeSlots');
+            container.innerHTML = '';
+            const hours = ['08:00', '09:30', '11:00', '14:00', '15:30', '17:00', '19:00', '21:00', '23:00', '01:00 (Nuit)'];
+            
+            hours.forEach((time, index) => {
+                const label = document.createElement('label');
+                label.className = 'border border-slate-200 rounded-lg p-2.5 text-center cursor-pointer hover:border-brand-500 text-xs font-semibold text-slate-700 block transition';
+                label.innerHTML = `
+                    <input type="radio" name="time" value="${time}" class="sr-only" ${index === 0 ? 'checked' : ''}>
+                    <span>${time}</span>
+                `;
+                container.appendChild(label);
+            });
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('bookingDate').value = today;
+        document.getElementById('bookingDate').min = today;
+
+        function getAppointments() {
+            return JSON.parse(localStorage.getItem('cs_appointments') || '[]');
+        }
+
+        function saveAppointment(rdv) {
+            const list = getAppointments();
+            list.push(rdv);
+            localStorage.setItem('cs_appointments', JSON.stringify(list));
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const service = document.querySelector('input[name="service"]:checked').value;
+            const date = document.getElementById('bookingDate').value;
+            const time = document.querySelector('input[name="time"]:checked').value;
+            const name = document.getElementById('patientName').value;
+            const phone = document.getElementById('patientPhone').value;
+            const code = 'CS-' + Math.floor(1000 + Math.random() * 9000);
+
+            const rdv = { code, service, date, time, name, phone };
+            saveAppointment(rdv);
+
+            document.getElementById('recCodeVal').textContent = code;
+            document.getElementById('recNameVal').textContent = name;
+            document.getElementById('recSrvVal').textContent = service;
+            document.getElementById('recDateVal').textContent = `${date} à ${time}`;
+
+            document.getElementById('receiptModal').classList.remove('hidden');
+            document.getElementById('receiptModal').classList.add('flex');
+
+            document.getElementById('bookingForm').reset();
+            goToStep(1);
+        }
+
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+            document.getElementById('receiptModal').classList.remove('flex');
+        }
+
+        function openAppointmentsModal() {
+            const list = getAppointments();
+            const container = document.getElementById('appointmentsList');
+            container.innerHTML = '';
+
+            if (list.length === 0) {
+                container.innerHTML = `<p class="text-sm text-slate-500 text-center py-6">${currentLang === 'ar' ? 'لا توجد مواعيد محجوزة حالياً.' : 'Aucun rendez-vous réservé pour le moment.'}</p>`;
+            } else {
+                list.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm flex justify-between items-center';
+                    div.innerHTML = `
+                        <div>
+                            <span class="font-bold text-brand-600 block">${item.code}</span>
+                            <span class="font-semibold text-slate-800 block mt-0.5">${item.service}</span>
+                            <span class="text-slate-500 text-xs">${item.date} - ${item.time}</span>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">${currentLang === 'ar' ? 'مؤكد' : 'Confirmé'}</span>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            document.getElementById('rdvModal').classList.remove('hidden');
+            document.getElementById('rdvModal').classList.add('flex');
+        }
+
+        function closeAppointmentsModal() {
+            document.getElementById('rdvModal').classList.add('hidden');
+            document.getElementById('rdvModal').classList.remove('flex');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            updateLanguage();
+        });
+    </script>
+</body>
+</html>
